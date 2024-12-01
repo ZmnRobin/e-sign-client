@@ -2,11 +2,12 @@
 import RegisterForm from "@/components/auth/register";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
-export default function RegisterPage() {
+function RegisterPageContent() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "";
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="relative flex bg-white rounded-sm w-full max-w-3xl border border-gray-300 overflow-hidden">
@@ -15,7 +16,6 @@ export default function RegisterPage() {
         </div>
         <div className="w-1/2 flex items-center justify-center">
           <div className="bg-gray-200 w-full h-full rounded-sm flex items-center justify-center">
-            {/* Content inside the right side */}
             <Image
               src="/svg/registerdemo.svg"
               alt="Demo"
@@ -27,5 +27,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegisterPageContent />
+    </Suspense>
   );
 }

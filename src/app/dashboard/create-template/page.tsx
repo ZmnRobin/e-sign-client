@@ -1,10 +1,12 @@
 import CreateTemplate from "@/components/dashboard/mytemplates/CreateTemplate";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default function CreateTemplatePage() {
   return (
     <>
-      <CreateTemplate />
+    <Suspense fallback={<div>Loading...</div>}>
+        <CreateTemplate />
+      </Suspense>
     </>
   );
 }
